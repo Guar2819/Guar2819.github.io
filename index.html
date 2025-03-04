@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #001f3f;
+            color: white;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(to right, cyan, purple, green);
+            padding: 10px;
+            text-align: center;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        .welcome-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, cyan, purple);
+            text-align: center;
+        }
+        .projects {
+            padding: 50px;
+            text-align: center;
+            background: darkviolet;
+        }
+        .project-tile {
+            margin: 20px;
+            padding: 15px;
+            background: white;
+            color: black;
+            display: inline-block;
+        }
+        .social-media {
+            padding: 30px;
+            text-align: center;
+            background: purple;
+        }
+        .social-media a {
+            color: cyan;
+            font-size: 20px;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        @media (max-width: 600px) {
+            .navbar a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#welcome-section">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#social-media">Contact</a>
+    </div>
+    <section id="welcome-section" class="welcome-section">
+        <h1>Hello! My name is Jonathan Guardado Agredano and this is my website I am making, It's still in progress but I will keep adding changes as I go through my website.</h1>
+    </section>
+    <section id="projects" class="projects">
+        <h2>My Projects</h2>
+        <div class="project-tile">
+            <a href="#">Project 1</a>
+        </div>
+    </section>
+    <section id="social-media" class="social-media">
+        <h2>Find my accounts here!</h2>
+        <p>Hello this is a<a href="https://www.youtube.com/watch?v=BBJa32lCaaY">test</a> run.</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/ci6ZtPAN0PM?si=j6mAhO2cI2Rky4Pi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        
+        
+        <br>
+        <a href="https://github.com/Guar2819" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/jonathan-guardado-agredano-10403832a/" target="_blank">LinkedIn</a>
+        <a href="https://www.codewars.com/users/Guar2819" target="_blank">CodeWars</a>
+    </section>
+</body>
+</html>
