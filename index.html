@@ -15,6 +15,7 @@
             color: white;
             line-height: 1.6;
             background: linear-gradient(to bottom, #001f3f, #003366);
+            overflow-x: hidden;
         }
         .navbar {
             position: fixed;
@@ -25,6 +26,11 @@
             text-align: center;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
             z-index: 1000;
+            animation: slideIn 1s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
         }
         .navbar a {
             color: white;
@@ -34,18 +40,37 @@
             transition: all 0.3s ease;
             padding: 8px 15px;
             border-radius: 5px;
+            position: relative;
+        }
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: white;
+            transition: width 0.3s ease;
+        }
+        .navbar a:hover::after {
+            width: 100%;
         }
         .navbar a:hover {
             color: #001f3f;
             font-weight: bold;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
             background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
         .navbar-title {
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 10px;
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
         }
         .welcome-section {
             display: flex;
@@ -66,9 +91,15 @@
             height: 100%;
             background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
             z-index: 1;
+            animation: pulse 5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.3; }
+            100% { transform: scale(1); opacity: 0.5; }
         }
         .welcome-section h1 {
-            font-size: 3em;
+            font-size: 2.5em;
             padding: 30px;
             animation: fadeIn 2s ease-in;
             position: relative;
@@ -76,16 +107,32 @@
             background: rgba(0, 0, 0, 0.3);
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+        }
+        .welcome-section h1:hover {
+            transform: scale(1.02);
         }
         @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
         .profile-section {
             padding: 70px;
             text-align: center;
             background: #1a0033;
             border-top: 2px solid cyan;
+            position: relative;
+        }
+        .profile-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="rgba(0,255,255,0.1)"/></svg>');
+            opacity: 0.1;
+            z-index: 0;
         }
         .profile-section img {
             width: 180px;
@@ -94,6 +141,11 @@
             margin-bottom: 25px;
             border: 4px solid cyan;
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .profile-section img:hover {
+            transform: rotate(360deg);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
         }
         .profile-section p {
             max-width: 700px;
@@ -102,6 +154,14 @@
             background: rgba(255, 255, 255, 0.1);
             padding: 20px;
             border-radius: 10px;
+            position: relative;
+            z-index: 1;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
         }
         .skills-section {
             padding: 70px;
@@ -124,16 +184,37 @@
             border-radius: 25px;
             font-weight: bold;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .skills-section li::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(0, 255, 255, 0.2);
+            transform: rotate(30deg);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+        .skills-section li:hover::before {
+            opacity: 1;
+            top: -20%;
+            left: -20%;
         }
         .skills-section li:hover {
             transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 255, 255, 0.5);
         }
         .projects {
             padding: 70px;
             text-align: center;
             background: darkviolet;
             border-top: 2px solid cyan;
+            position: relative;
         }
         .project-tile {
             margin: 25px;
@@ -143,15 +224,29 @@
             display: inline-block;
             border-radius: 15px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
         }
         .project-tile:hover {
             transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 255, 255, 0.5);
         }
         .project-tile a {
             text-decoration: none;
             color: #001f3f;
             font-weight: bold;
+            position: relative;
+        }
+        .project-tile a::after {
+            content: '→';
+            position: absolute;
+            right: -20px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .project-tile a:hover::after {
+            opacity: 1;
+            right: -15px;
         }
         .social-media {
             padding: 50px;
@@ -164,33 +259,62 @@
             font-size: 22px;
             margin: 0 20px;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
         }
         .social-media a:hover {
             color: white;
             text-shadow: 0 0 10px cyan;
+            transform: scale(1.1);
         }
         .social-media iframe {
             display: block;
             margin: 25px auto;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+        }
+        .social-media iframe:hover {
+            transform: scale(1.02);
         }
         .btn {
             display: inline-block;
-            padding: 12px 25px;
-            background: cyan;
-            color: #001f3f;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, cyan, #00ffcc);
+            color: white;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-weight: bold;
-            transition: background 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 255, 255, 0.5);
+            font-size: 1.2em;
+            transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 255, 255, 0.7);
+            position: relative;
+            overflow: hidden;
+            margin: 10px;
+            text-transform: uppercase;
+            border: 2px solid #00ffff;
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+        .btn:hover::before {
+            width: 400px;
+            height: 400px;
         }
         .btn:hover {
-            background: white;
+            background: linear-gradient(45deg, white, #e0ffff);
             color: #001f3f;
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.7);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.9);
+            transform: translateY(-4px) scale(1.05);
         }
         footer {
             padding: 30px;
@@ -199,21 +323,35 @@
             font-size: 1em;
             border-top: 2px solid cyan;
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+            position: relative;
         }
         footer a {
             color: cyan;
             text-decoration: none;
             margin: 0 15px;
             font-size: 1.1em;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
         footer a:hover {
             color: white;
+            transform: scale(1.1);
         }
         h2 {
             font-size: 2.5em;
             margin-bottom: 30px;
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: cyan;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
         }
         @media (max-width: 600px) {
             .navbar a {
@@ -247,6 +385,11 @@
             .social-media {
                 padding: 30px;
             }
+            .btn {
+                display: block;
+                margin: 15px auto;
+                width: 80%;
+            }
         }
     </style>
 </head>
@@ -260,7 +403,7 @@
         <a href="#social-media">Contact</a>
     </div>
     <section id="welcome-section" class="welcome-section">
-        <h1>Hello, my name is Jonathan Guardado Agredano and I will be updating my portfolio project daily, stay tuned for more updates! Last update: March 5th, 2025</h1>
+        <h1 id="current-date"></h1>
     </section>
     <section id="profile-section" class="profile-section">
         <h2>About Me</h2>
@@ -280,8 +423,8 @@
     </section>
     <section id="social-media" class="social-media">
         <h2>Find my accounts here!</h2>
-        <p>Hello this is a <a href="https://www.youtube.com/watch?v=U6MFMZedaco">click to</a> run.</p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/U6MFMZedaco" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <p>Hello this is a <a href="https://www.youtube.com/watch?v=fOzvP1I5tLU">click to</a> run.</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/fOzvP1I5tLU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         <br>
         <a href="https://github.com/Guar2819" target="_blank" class="btn">GitHub</a>
         <a href="https://www.linkedin.com/in/jonathan-guardado-agredano-10403832a/" target="_blank" class="btn">LinkedIn</a>
@@ -290,7 +433,21 @@
     <footer>
         <p>© 2025 Jonathan Guardado Agredano. All rights reserved.</p>
         <a href="#welcome-section">Back to Top</a>
-        <a href="mailto:example@email.com">Email Me</a>
+        <a href="jaguar220807@gmail.com">Email Me</a>
     </footer>
+    <script>
+        function updateDate() {
+            const today = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            const formattedDate = today.toLocaleDateString('en-US', options);
+            document.getElementById('current-date').textContent = `Today is ${formattedDate}`;
+        }
+        updateDate();
+    </script>
 </body>
 </html>
