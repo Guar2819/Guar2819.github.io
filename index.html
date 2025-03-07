@@ -41,6 +41,7 @@
             padding: 8px 15px;
             border-radius: 5px;
             position: relative;
+            display: inline-block;
         }
         .navbar a::after {
             content: '';
@@ -70,7 +71,7 @@
             background: rgba(0, 0, 0, 0.2);
             padding: 5px 15px;
             border-radius: 20px;
-            display: inline-block;
+            display: block;
         }
         .welcome-section {
             display: flex;
@@ -108,6 +109,8 @@
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
             transition: transform 0.3s ease;
+            width: 90%;
+            margin: 0 auto;
         }
         .welcome-section h1:hover {
             transform: scale(1.02);
@@ -117,7 +120,7 @@
             100% { opacity: 1; transform: translateY(0); }
         }
         .profile-section {
-            padding: 70px;
+            padding: 70px 20px;
             text-align: center;
             background: #1a0033;
             border-top: 2px solid cyan;
@@ -164,7 +167,7 @@
             100% { transform: translateY(0); }
         }
         .skills-section {
-            padding: 70px;
+            padding: 70px 20px;
             text-align: center;
             background: #002080;
             border-top: 2px solid cyan;
@@ -210,22 +213,23 @@
             box-shadow: 0 6px 15px rgba(0, 255, 255, 0.5);
         }
         .projects {
-            padding: 70px;
+            padding: 70px 20px;
             text-align: center;
             background: darkviolet;
             border-top: 2px solid cyan;
             position: relative;
         }
         .project-tile {
-            margin: 25px;
+            margin: 25px auto;
             padding: 20px;
             background: white;
             color: black;
-            display: inline-block;
+            display: block;
             border-radius: 15px;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
+            max-width: 500px;
         }
         .project-tile:hover {
             transform: scale(1.05);
@@ -249,7 +253,7 @@
             right: -15px;
         }
         .social-media {
-            padding: 50px;
+            padding: 50px 20px;
             text-align: center;
             background: purple;
             border-top: 2px solid cyan;
@@ -273,6 +277,8 @@
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
             transition: transform 0.3s ease;
+            max-width: 100%;
+            height: auto;
         }
         .social-media iframe:hover {
             transform: scale(1.02);
@@ -317,7 +323,7 @@
             transform: translateY(-4px) scale(1.05);
         }
         footer {
-            padding: 30px;
+            padding: 30px 20px;
             text-align: center;
             background: #001a33;
             font-size: 1em;
@@ -353,42 +359,90 @@
             transform: translateX(-50%);
             border-radius: 2px;
         }
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .navbar a {
                 display: block;
                 margin: 12px 0;
+                font-size: 18px;
+            }
+            .navbar-title {
+                font-size: 20px;
             }
             .welcome-section h1 {
-                font-size: 2em;
+                font-size: 1.8em;
+                padding: 20px;
             }
-            .project-tile {
-                width: 100%;
-                box-sizing: border-box;
+            .profile-section img {
+                width: 150px;
+                height: 150px;
             }
-            .social-media iframe {
-                width: 100%;
-                height: auto;
+            .profile-section p {
+                font-size: 1.1em;
+                padding: 15px;
             }
             .skills-section ul {
                 flex-direction: column;
                 gap: 15px;
             }
-            .profile-section {
-                padding: 40px;
+            .project-tile {
+                width: 90%;
             }
-            .skills-section {
-                padding: 40px;
-            }
-            .projects {
-                padding: 40px;
-            }
-            .social-media {
-                padding: 30px;
+            .social-media iframe {
+                width: 100%;
+                height: 200px;
             }
             .btn {
                 display: block;
-                margin: 15px auto;
                 width: 80%;
+                margin: 15px auto;
+                font-size: 1em;
+            }
+            h2 {
+                font-size: 2em;
+            }
+        }
+        @media (max-width: 480px) {
+            .navbar a {
+                font-size: 16px;
+                padding: 6px 10px;
+            }
+            .navbar-title {
+                font-size: 18px;
+            }
+            .welcome-section h1 {
+                font-size: 1.5em;
+                padding: 15px;
+            }
+            .profile-section {
+                padding: 40px 15px;
+            }
+            .profile-section img {
+                width: 120px;
+                height: 120px;
+            }
+            .profile-section p {
+                font-size: 1em;
+            }
+            .skills-section {
+                padding: 40px 15px;
+            }
+            .projects {
+                padding: 40px 15px;
+            }
+            .social-media {
+                padding: 30px 15px;
+            }
+            .social-media iframe {
+                height: 180px;
+            }
+            .btn {
+                padding: 12px 20px;
+            }
+            footer {
+                padding: 20px 15px;
+            }
+            h2 {
+                font-size: 1.8em;
             }
         }
     </style>
@@ -407,13 +461,11 @@
     </section>
     <section id="profile-section" class="profile-section">
         <h2>About Me</h2>
-        <img src="file:///C:/Users/Jguar312/Downloads/1739317330409%20(1).jpg" alt="Profile Picture">
+        <img src="file:///C:/Users/Jguar312/Downloads/f31957793beb3d5a80ec70ba8cf5b03b-300x300.jpg" alt="Profile Picture">
         <p>I'm a passionate developer working on building my skills in web development, coding, and problem-solving. This portfolio showcases my journey and projects as I grow in the tech world.</p>
     </section>
     <section id="skills-section" class="skills-section">
         <h2>My Skills</h2>
-        <ul>
-        </ul>
     </section>
     <section id="projects" class="projects">
         <h2>My Projects</h2>
@@ -423,8 +475,8 @@
     </section>
     <section id="social-media" class="social-media">
         <h2>Find my accounts here!</h2>
-        <p>Hello this is a <a href="https://www.youtube.com/watch?v=fOzvP1I5tLU">click to</a> run.</p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/fOzvP1I5tLU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <p>Hello this is a <a href="https://www.youtube.com/watch?v=Ys1w9A4DrO4">click to</a> run.</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/ofeKMg9Pc3Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         <br>
         <a href="https://github.com/Guar2819" target="_blank" class="btn">GitHub</a>
         <a href="https://www.linkedin.com/in/jonathan-guardado-agredano-10403832a/" target="_blank" class="btn">LinkedIn</a>
@@ -433,7 +485,7 @@
     <footer>
         <p>© 2025 Jonathan Guardado Agredano. All rights reserved.</p>
         <a href="#welcome-section">Back to Top</a>
-        <a href="jaguar220807@gmail.com">Email Me</a>
+        <a href="mailto:jaguar220807@gmail.com">Email Me</a>
     </footer>
     <script>
         function updateDate() {
