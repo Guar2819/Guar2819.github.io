@@ -491,14 +491,18 @@
         function updateDate() {
             const today = new Date();
             const options = { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
+                weekday: 'long',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
             };
-            const formattedDate = today.toLocaleDateString('en-US', options);
-            document.getElementById('current-date').textContent = `Today is ${formattedDate}`;
+            const formattedDate = today.toLocaleString('en-US', options);
+            document.getElementById('current-date').textContent = `Current Date & Time: ${formattedDate}`;
         }
+        setInterval(updateDate, 1000);
         updateDate();
     </script>
 </body>
