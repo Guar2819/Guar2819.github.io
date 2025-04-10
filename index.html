@@ -82,6 +82,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            flex-direction: column;
         }
         .welcome-section::before {
             content: '';
@@ -110,7 +111,7 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
             transition: transform 0.3s ease;
             width: 90%;
-            margin: 0 auto;
+            margin: 0 auto 20px auto;
         }
         .welcome-section h1:hover {
             transform: scale(1.02);
@@ -553,13 +554,13 @@
     <section id="projects" class="projects">
         <h2>My Projects</h2>
         <div class="project-tile">
-        <a href="" target="_blank" class="btn">Project 1</a>
+            <a href="one-word-theme-for-2025.pdf" target="_blank" class="btn">Project 1</a>
         </div>
     </section>
     <section id="social-media" class="social-media">
         <h2>Find my accounts here!</h2>
         <p>Hello this is a <a href="https://www.youtube.com/watch?v=Ys1w9A4DrO4">click to</a> run.</p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/ofeKMg9Pc3Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/ofeKMg9Pc3Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted725media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         <br>
         <a href="https://github.com/Guar2819" target="_blank" class="btn">GitHub</a>
         <a href="https://www.linkedin.com/in/jonathan-guardado-agredano-10403832a/" target="_blank" class="btn">LinkedIn</a>
@@ -576,6 +577,7 @@
             <li>Favorite artists: Kesha, Jessie J, Katy Perry, Selena Gomez, Britney Spears, Miley Cyrus and Clean Bandit</li>
             <li>Favorite bands: Metallica, Aerosmith and Ghost</li>
             <li>Favorite songs: Rather Be by Clean Bandit, Fireworks by Katy Perry, Flowers by Miley Cyrus, Baby One More Time by Britney Spears and Flashlight by Jessie J</li>
+            <li>Favorite video-game character: Madeline from Celeste</li>
             <li><a href="https://open.spotify.com/track/61dCUoMCg28qEBzrW6htYM" target="_blank">Rather Be by Clean Bandit on Spotify</a></li>
             <li><a href="https://open.spotify.com/track/4lCv7b86sLynZbXhfScfm2" target="_blank">Fireworks by Katy Perry on Spotify</a></li>
             <li><a href="https://open.spotify.com/track/7DSAEUvxU8FajXtRloy8M0" target="_blank">Flowers by Miley Cyrus on Spotify</a></li>
@@ -607,13 +609,18 @@
         setInterval(updateDate, 1000);
         updateDate();
 
-        const emojis = ['🎵', '🌟', '🚀', '🍔', '🌊', '🎸', '✨', '🎤', '🏖️', '🔥'];
+        const emojis = ['🎵', '🌟', '🚀', '🍔', '🌊', '🎸', '✨', '🎤', '🏖️', '🔥', '🌈', '🐾', '🍕', '🎉', '🌍', '💡', '🦋', '🎨', '🍦', '🌙', '⚡', '🔔', '🎀', '🍓', '🌴', '💖', '🦄', '🎮', '🌸', '🍀'];
         const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
         document.getElementById('random-emoji').textContent = randomEmoji;
 
         const wordsOfTheDay = [
             'Hope', 'Dream', 'Inspire', 'Create', 'Explore', 'Joy', 'Peace', 'Love', 
-            'Courage', 'Wisdom', 'Strength', 'Imagine', 'Grow', 'Shine', 'Believe'
+            'Courage', 'Wisdom', 'Strength', 'Imagine', 'Grow', 'Shine', 'Believe',
+            'Adventure', 'Harmony', 'Passion', 'Freedom', 'Kindness', 'Energy', 
+            'Balance', 'Gratitude', 'Vision', 'Success', 'Faith', 'Unity', 'Bliss', 
+            'Resilience', 'Discovery', 'Serenity', 'Empower', 'Radiance', 'Truth', 
+            'Journey', 'Boldness', 'Clarity', 'Happiness', 'Purpose', 'Wonder', 
+            'Authenticity', 'Vibrance', 'Tranquility', 'Determination', 'Inspiration'
         ];
         const today = new Date();
         const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
@@ -622,18 +629,30 @@
 
         let username = null;
         while (!username) {
-            username = prompt("Please enter your username:");
+            username = prompt("Please enter your name:");
             if (!username) {
                 alert("Error: You need to enter your name!");
             }
         }
-        document.getElementById('loader-greeting').textContent = `Hi there, ${username}! Word of the Day: ${wordOfTheDay}`;
-        
+
+        const loadTime = 4000; 
+        let timeLeft = loadTime / 1000; 
+        document.getElementById('loader-greeting').textContent = `Hi there, ${username}! Word of the Day: ${wordOfTheDay} - Opening in ${timeLeft} seconds`;
+
+        const countdown = setInterval(() => {
+            timeLeft--;
+            if (timeLeft >= 0) {
+                document.getElementById('loader-greeting').textContent = `Hi there, ${username}! Word of the Day: ${wordOfTheDay} - Opening in ${timeLeft} seconds`;
+            } else {
+                clearInterval(countdown);
+            }
+        }, 1000);
+
         window.addEventListener('load', function() {
             const loader = document.querySelector('.loader');
             setTimeout(() => {
                 loader.classList.add('hidden');
-            }, 4000);
+            }, loadTime);
         });
     </script>
 </body>
