@@ -16,6 +16,237 @@
             line-height: 1.6;
             background: linear-gradient(to bottom, #191970, #141452);
             overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+            position: relative;
+        }
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .theme-toggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1001;
+        }
+        .theme-toggle select {
+            padding: 8px;
+            background: #483D8B;
+            color: #FFBF00;
+            border: 2px solid #FFBF00;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .theme-toggle select:hover {
+            background: #FFBF00;
+            color: #191970;
+        }
+        .theme-toggle select:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(255, 191, 0, 0.5);
+        }
+        body.light-mode {
+            background: linear-gradient(to bottom, #f0f0f0, #d9d9d9);
+            color: #333;
+        }
+        body.light-mode .navbar {
+            background: linear-gradient(to right, #ffffff, #e6e6e6);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        body.light-mode .navbar a,
+        body.light-mode .navbar-title {
+            color: #333;
+        }
+        body.light-mode .navbar a:hover {
+            background: rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
+        body.light-mode .navbar a::after {
+            background: #333;
+        }
+        body.light-mode .welcome-section {
+            background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+        }
+        body.light-mode .welcome-section h1 {
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+        }
+        body.light-mode .welcome-section h2 {
+            color: #333;
+        }
+        body.light-mode .profile-section {
+            background: #f0f0f0;
+        }
+        body.light-mode .profile-section p {
+            background: rgba(0, 0, 0, 0.05);
+            color: #333;
+        }
+        body.light-mode .skills-section {
+            background: #e6e6e6;
+        }
+        body.light-mode .skills-section li {
+            background: #333;
+            color: #fff;
+        }
+        body.light-mode .projects {
+            background: #f0f0f0;
+        }
+        body.light-mode .project-tile {
+            background: #333;
+            color: #fff;
+        }
+        body.light-mode .project-tile a {
+            color: #fff;
+        }
+        body.light-mode .social-media {
+            background: #e6e6e6;
+        }
+        body.light-mode .social-media a,
+        body.light-mode .favorites-section a,
+        body.light-mode footer a {
+            color: #333;
+        }
+        body.light-mode .btn {
+            background: linear-gradient(45deg, #333, #666);
+            color: #fff;
+            border: 2px solid #333;
+        }
+        body.light-mode .btn:hover {
+            background: linear-gradient(45deg, #666, #333);
+        }
+        body.light-mode .favorites-section {
+            background: #e6e6e6;
+        }
+        body.light-mode .favorites-section li {
+            background: rgba(0, 0, 0, 0.05);
+            color: #333;
+        }
+        body.light-mode .madeline-section {
+            background: #f0f0f0;
+        }
+        body.light-mode footer {
+            background: #f0f0f0;
+        }
+        body.light-mode h2::after,
+        body.light-mode .profile-section,
+        body.light-mode .skills-section,
+        body.light-mode .projects,
+        body.light-mode .social-media,
+        body.light-mode .favorites-section,
+        body.light-mode .madeline-section,
+        body.light-mode footer {
+            border-top: 2px solid #333;
+        }
+        body.light-mode .profile-section img,
+        body.light-mode .favorites-section img,
+        body.light-mode .madeline-section img {
+            border: 4px solid #333;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        body.dark-mode {
+            background: linear-gradient(to bottom, #1a1a1a, #0d0d0d);
+            color: #e0e0e0;
+        }
+        body.dark-mode .navbar {
+            background: linear-gradient(to right, #333, #1a1a1a);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        body.dark-mode .navbar a,
+        body.dark-mode .navbar-title {
+            color: #e0e0e0;
+        }
+        body.dark-mode .navbar a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
+        }
+        body.dark-mode .navbar a::after {
+            background: #e0e0e0;
+        }
+        body.dark-mode .welcome-section {
+            background: linear-gradient(to bottom, #333, #1a1a1a);
+        }
+        body.dark-mode .welcome-section h1 {
+            background: rgba(51, 51, 51, 0.8);
+            color: #e0e0e0;
+        }
+        body.dark-mode .welcome-section h2 {
+            color: #e0e0e0;
+        }
+        body.dark-mode .profile-section {
+            background: #1a1a1a;
+        }
+        body.dark-mode .profile-section p {
+            background: rgba(255, 255, 255, 0.05);
+            color: #e0e0e0;
+        }
+        body.dark-mode .skills-section {
+            background: #333;
+        }
+        body.dark-mode .skills-section li {
+            background: #e0e0e0;
+            color: #1a1a1a;
+        }
+        body.dark-mode .projects {
+            background: #1a1a1a;
+        }
+        body.dark-mode .project-tile {
+            background: #e0e0e0;
+            color: #1a1a1a;
+        }
+        body.dark-mode .project-tile a {
+            color: #1a1a1a;
+        }
+        body.dark-mode .social-media {
+            background: #333;
+        }
+        body.dark-mode .social-media a,
+        body.dark-mode .favorites-section a,
+        body.dark-mode footer a {
+            color: #e0e0e0;
+        }
+        body.dark-mode .btn {
+            background: linear-gradient(45deg, #e0e0e0, #666);
+            color: #1a1a1a;
+            border: 2px solid #e0e0e0;
+        }
+        body.dark-mode .btn:hover {
+            background: linear-gradient(45deg, #666, #e0e0e0);
+        }
+        body.dark-mode .favorites-section {
+            background: #333;
+        }
+        body.dark-mode .favorites-section li {
+            background: rgba(255, 255, 255, 0.05);
+            color: #e0e0e0;
+        }
+        body.dark-mode .madeline-section {
+            background: #1a1a1a;
+        }
+        body.dark-mode footer {
+            background: #1a1a1a;
+        }
+        body.dark-mode h2::after,
+        body.dark-mode .profile-section,
+        body.dark-mode .skills-section,
+        body.dark-mode .projects,
+        body.dark-mode .social-media,
+        body.dark-mode .favorites-section,
+        body.dark-mode .madeline-section,
+        body.dark-mode footer {
+            border-top: 2px solid #e0e0e0;
+        }
+        body.dark-mode .profile-section img,
+        body.dark-mode .favorites-section img,
+        body.dark-mode .madeline-section img {
+            border: 4px solid #e0e0e0;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
         }
         .navbar {
             position: fixed;
@@ -115,6 +346,16 @@
         }
         .welcome-section h1:hover {
             transform: scale(1.02);
+        }
+        .welcome-section h2 {
+            font-size: 1.8em;
+            padding: 10px;
+            position: relative;
+            z-index: 2;
+            background: rgba(72, 61, 139, 0.3);
+            border-radius: 10px;
+            margin: 0;
+            color: #FFBF00;
         }
         @keyframes fadeIn {
             0% { opacity: 0; transform: translateY(20px); }
@@ -373,6 +614,9 @@
                 font-size: 1.8em;
                 padding: 20px;
             }
+            .welcome-section h2 {
+                font-size: 1.4em;
+            }
             .profile-section img {
                 width: 150px;
                 height: 150px;
@@ -413,6 +657,9 @@
             .welcome-section h1 {
                 font-size: 1.5em;
                 padding: 15px;
+            }
+            .welcome-section h2 {
+                font-size: 1.2em;
             }
             .profile-section {
                 padding: 40px 15px;
@@ -548,6 +795,14 @@
     </style>
 </head>
 <body>
+    <canvas id="particle-canvas"></canvas>
+    <div class="theme-toggle">
+        <select id="theme-select">
+            <option value="default">Default Mode</option>
+            <option value="light">Light Mode</option>
+            <option value="dark">Dark Mode</option>
+        </select>
+    </div>
     <div class="loader">
         <div class="spinner" id="random-emoji"></div>
         <div class="loader-text" id="loader-greeting"></div>
@@ -562,6 +817,7 @@
     </div>
     <section id="welcome-section" class="welcome-section">
         <h1 id="current-date"></h1>
+        <h2 id="welcome-greeting"></h2>
     </section>
     <section id="profile-section" class="profile-section">
         <h2>About Me</h2>
@@ -584,7 +840,7 @@
     <section id="social-media" class="social-media">
         <h2>Find my accounts here!</h2>
         <p>Hello this is a <a href="https://www.youtube.com/watch?v=Ys1w9A4DrO4">click to</a> run.</p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/ofeKMg9Pc3Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted725media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/ofeKMg9Pc3Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         <br>
         <a href="https://github.com/Guar2819" target="_blank" class="btn">GitHub</a>
         <a href="https://www.linkedin.com/in/jonathan-guardado-agredano-10403832a/" target="_blank" class="btn">LinkedIn</a>
@@ -657,20 +913,26 @@
 
         let username = null;
         while (!username) {
-            username = prompt("Please enter your name:");
-            if (!username) {
+            let input = prompt("Please enter your name:");
+            if (!input) {
                 alert("Error: You need to enter your name!");
+            } else if (input.length > 15) {
+                alert("Sorry, your name should only be at least 15 characters long!");
+            } else {
+                username = input;
             }
         }
 
+        document.getElementById('welcome-greeting').textContent = `Hi ${username}`;
+
         const loadTime = 4000; 
         let timeLeft = loadTime / 1000; 
-        document.getElementById('loader-greeting').textContent = `Hi there, ${username}! Word of the Day: ${wordOfTheDay} - Opening in ${timeLeft} seconds`;
+        document.getElementById('loader-greeting').textContent = `Hi ${username}! Word of the Day: ${wordOfTheDay} - Opening in ${timeLeft} seconds`;
 
         const countdown = setInterval(() => {
             timeLeft--;
             if (timeLeft >= 0) {
-                document.getElementById('loader-greeting').textContent = `Hi there, ${username}! Word of the Day: ${wordOfTheDay} - Opening in ${timeLeft} seconds`;
+                document.getElementById('loader-greeting').textContent = `Hi ${username}! Word of the Day: ${wordOfTheDay} - Opening in ${timeLeft} seconds`;
             } else {
                 clearInterval(countdown);
             }
@@ -681,6 +943,90 @@
             setTimeout(() => {
                 loader.classList.add('hidden');
             }, loadTime);
+        });
+
+        const themeSelect = document.getElementById('theme-select');
+        themeSelect.addEventListener('change', function() {
+            const selectedTheme = this.value;
+            document.body.classList.remove('light-mode', 'dark-mode');
+            if (selectedTheme === 'light') {
+                document.body.classList.add('light-mode');
+            } else if (selectedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+            localStorage.setItem('theme', selectedTheme);
+        });
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            themeSelect.value = savedTheme;
+            document.body.classList.remove('light-mode', 'dark-mode');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
+            } else if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        }
+
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const particleCount = 100;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 5 + 1;
+                this.speedX = Math.random() * 2 - 1;
+                this.speedY = Math.random() * 2 - 1;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.size > 0.2) this.size -= 0.05;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = document.body.classList.contains('light-mode') ? 'rgba(51, 51, 51, 0.5)' : 
+                               document.body.classList.contains('dark-mode') ? 'rgba(224, 224, 224, 0.5)' : 
+                               'rgba(255, 191, 0, 0.5)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                if (particles[i].size <= 0.2) {
+                    particles.splice(i, 1);
+                    i--;
+                    particles.push(new Particle());
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         });
     </script>
 </body>
