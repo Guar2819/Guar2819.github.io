@@ -52,6 +52,21 @@
             outline: none;
             box-shadow: 0 0 5px rgba(255, 191, 0, 0.5);
         }
+        .theme-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(72, 61, 139, 0.9);
+            color: #FFBF00;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            z-index: 2000;
+            display: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
         body.light-mode {
             background: linear-gradient(to bottom, #f0f0f0, #d9d9d9);
             color: #333;
@@ -645,6 +660,9 @@
             h2 {
                 font-size: 2em;
             }
+            .theme-toggle {
+                top: 150px;
+            }
         }
         @media (max-width: 480px) {
             .navbar a {
@@ -691,6 +709,14 @@
             }
             h2 {
                 font-size: 1.8em;
+            }
+            .theme-message {
+                font-size: 1em;
+                padding: 15px;
+                width: 80%;
+            }
+            .theme-toggle {
+                top: 120px;
             }
         }
         .favorites-section {
@@ -803,6 +829,7 @@
             <option value="dark">Dark Mode</option>
         </select>
     </div>
+    <div id="theme-message" class="theme-message"></div>
     <div class="loader">
         <div class="spinner" id="random-emoji"></div>
         <div class="loader-text" id="loader-greeting"></div>
@@ -946,15 +973,28 @@
         });
 
         const themeSelect = document.getElementById('theme-select');
+        const themeMessage = document.getElementById('theme-message');
         themeSelect.addEventListener('change', function() {
             const selectedTheme = this.value;
-            document.body.classList.remove('light-mode', 'dark-mode');
-            if (selectedTheme === 'light') {
-                document.body.classList.add('light-mode');
-            } else if (selectedTheme === 'dark') {
-                document.body.classList.add('dark-mode');
-            }
-            localStorage.setItem('theme', selectedTheme);
+            let countdownTime = 3;
+            themeMessage.style.display = 'block';
+            themeMessage.textContent = `Switching to ${selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)} Mode in ${countdownTime} seconds, please wait`;
+            const themeCountdown = setInterval(() => {
+                countdownTime--;
+                if (countdownTime >= 0) {
+                    themeMessage.textContent = `Switching to ${selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)} Mode in ${countdownTime} seconds, please wait`;
+                } else {
+                    clearInterval(themeCountdown);
+                    document.body.classList.remove('light-mode', 'dark-mode');
+                    if (selectedTheme === 'light') {
+                        document.body.classList.add('light-mode');
+                    } else if (selectedTheme === 'dark') {
+                        document.body.classList.add('dark-mode');
+                    }
+                    localStorage.setItem('theme', selectedTheme);
+                    themeMessage.style.display = 'none';
+                }
+            }, 1000);
         });
 
         const savedTheme = localStorage.getItem('theme');
