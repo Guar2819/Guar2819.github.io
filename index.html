@@ -43,29 +43,32 @@
             font-size: 14px;
             cursor: pointer;
             transition: background 0.3s ease, color 0.3s ease;
+            box-shadow: 0 2px 5px rgba(255, 191, 0, 0.3);
         }
         .theme-toggle select:hover {
             background: #FFBF00;
             color: #191970;
+            transform: scale(1.05);
         }
         .theme-toggle select:focus {
             outline: none;
-            box-shadow: 0 0 5px rgba(255, 191, 0, 0.5);
+            box-shadow: 0 0 8px rgba(255, 191, 0, 0.7);
         }
         .theme-message {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(72, 61, 139, 0.9);
+            background: rgba(72, 61, 139, 0.95);
             color: #FFBF00;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 15px;
             font-size: 1.2em;
             z-index: 2000;
             display: none;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
             text-align: center;
+            backdrop-filter: blur(5px);
         }
         body.light-mode {
             background: linear-gradient(to bottom, #f0f0f0, #d9d9d9);
@@ -143,9 +146,6 @@
             background: rgba(0, 0, 0, 0.05);
             color: #333;
         }
-        body.light-mode .madeline-section {
-            background: #f0f0f0;
-        }
         body.light-mode footer {
             background: #f0f0f0;
         }
@@ -155,15 +155,22 @@
         body.light-mode .projects,
         body.light-mode .social-media,
         body.light-mode .favorites-section,
-        body.light-mode .madeline-section,
         body.light-mode footer {
             border-top: 2px solid #333;
         }
         body.light-mode .profile-section img,
-        body.light-mode .favorites-section img,
-        body.light-mode .madeline-section img {
+        body.light-mode .favorites-section img {
             border: 4px solid #333;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        body.light-mode .theme-toggle select {
+            background: #e6e6e6;
+            color: #333;
+            border: 2px solid #333;
+        }
+        body.light-mode .theme-toggle select:hover {
+            background: #333;
+            color: #fff;
         }
         body.dark-mode {
             background: linear-gradient(to bottom, #1a1a1a, #0d0d0d);
@@ -241,9 +248,6 @@
             background: rgba(255, 255, 255, 0.05);
             color: #e0e0e0;
         }
-        body.dark-mode .madeline-section {
-            background: #1a1a1a;
-        }
         body.dark-mode footer {
             background: #1a1a1a;
         }
@@ -253,15 +257,22 @@
         body.dark-mode .projects,
         body.dark-mode .social-media,
         body.dark-mode .favorites-section,
-        body.dark-mode .madeline-section,
         body.dark-mode footer {
             border-top: 2px solid #e0e0e0;
         }
         body.dark-mode .profile-section img,
-        body.dark-mode .favorites-section img,
-        body.dark-mode .madeline-section img {
+        body.dark-mode .favorites-section img {
             border: 4px solid #e0e0e0;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+        body.dark-mode .theme-toggle select {
+            background: #333;
+            color: #e0e0e0;
+            border: 2px solid #e0e0e0;
+        }
+        body.dark-mode .theme-toggle select:hover {
+            background: #e0e0e0;
+            color: #1a1a1a;
         }
         .navbar {
             position: fixed;
@@ -270,9 +281,10 @@
             background: linear-gradient(to right, #483D8B, #191970);
             padding: 15px;
             text-align: center;
-            box-shadow: 0 2px 10px rgba(72, 61, 139, 0.3);
+            box-shadow: 0 2px 15px rgba(72, 61, 139, 0.4);
             z-index: 1000;
             animation: slideIn 1s ease-out;
+            backdrop-filter: blur(8px);
         }
         @keyframes slideIn {
             from { transform: translateY(-100%); }
@@ -306,7 +318,7 @@
             color: #FFBF00;
             font-weight: bold;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            background: rgba(255, 191, 0, 0.2);
+            background: rgba(255, 191, 0, 0.3);
             transform: translateY(-2px);
         }
         .navbar-title {
@@ -314,10 +326,16 @@
             font-weight: bold;
             margin-bottom: 10px;
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-            background: rgba(72, 61, 139, 0.2);
+            background: rgba(72, 61, 139, 0.3);
             padding: 5px 15px;
             border-radius: 20px;
             display: block;
+            animation: glow 2s ease-in-out infinite;
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px rgba(255, 191, 0, 0.5); }
+            50% { text-shadow: 0 0 15px rgba(255, 191, 0, 0.8); }
+            100% { text-shadow: 0 0 5px rgba(255, 191, 0, 0.5); }
         }
         .welcome-section {
             display: flex;
@@ -337,7 +355,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(255, 191, 0, 0.1), transparent);
+            background: radial-gradient(circle, rgba(255, 191, 0, 0.15), transparent);
             z-index: 1;
             animation: pulse 5s infinite;
         }
@@ -352,25 +370,27 @@
             animation: fadeIn 2s ease-in;
             position: relative;
             z-index: 2;
-            background: rgba(72, 61, 139, 0.3);
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            background: rgba(72, 61, 139, 0.4);
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
             transition: transform 0.3s ease;
             width: 90%;
             margin: 0 auto 20px auto;
+            backdrop-filter: blur(5px);
         }
         .welcome-section h1:hover {
-            transform: scale(1.02);
+            transform: scale(1.03);
         }
         .welcome-section h2 {
             font-size: 1.8em;
             padding: 10px;
             position: relative;
             z-index: 2;
-            background: rgba(72, 61, 139, 0.3);
-            border-radius: 10px;
+            background: rgba(72, 61, 139, 0.4);
+            border-radius: 15px;
             margin: 0;
             color: #FFBF00;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
         @keyframes fadeIn {
             0% { opacity: 0; transform: translateY(20px); }
@@ -391,7 +411,7 @@
             width: 100%;
             height: 100%;
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="rgba(255,191,0,0.1)"/></svg>');
-            opacity: 0.1;
+            opacity: 0.15;
             z-index: 0;
         }
         .profile-section img {
@@ -400,22 +420,25 @@
             border-radius: 50%;
             margin-bottom: 25px;
             border: 4px solid #FFBF00;
-            box-shadow: 0 0 20px rgba(255, 191, 0, 0.5);
+            box-shadow: 0 0 25px rgba(255, 191, 0, 0.6);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: float 4s ease-in-out infinite;
         }
         .profile-section img:hover {
             transform: rotate(360deg);
-            box-shadow: 0 0 30px rgba(255, 191, 0, 0.8);
+            box-shadow: 0 0 35px rgba(255, 191, 0, 0.9);
         }
         .profile-section p {
             max-width: 700px;
             margin: 0 auto;
             font-size: 1.3em;
-            background: rgba(255, 191, 0, 0.1);
+            background: rgba(255, 191, 0, 0.15);
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 15px;
             position: relative;
             z-index: 1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
             animation: float 3s ease-in-out infinite;
         }
         @keyframes float {
@@ -443,10 +466,11 @@
             padding: 12px 25px;
             border-radius: 25px;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
+            animation: float 5s ease-in-out infinite;
         }
         .skills-section li::before {
             content: '';
@@ -455,7 +479,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: rgba(72, 61, 139, 0.2);
+            background: rgba(72, 61, 139, 0.3);
             transform: rotate(30deg);
             transition: all 0.5s ease;
             opacity: 0;
@@ -467,7 +491,7 @@
         }
         .skills-section li:hover {
             transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(255, 191, 0, 0.5);
+            box-shadow: 0 8px 20px rgba(255, 191, 0, 0.6);
         }
         .projects {
             padding: 70px 20px;
@@ -487,10 +511,11 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             max-width: 500px;
+            backdrop-filter: blur(5px);
         }
         .project-tile:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(255, 191, 0, 0.5);
+            box-shadow: 0 10px 25px rgba(255, 191, 0, 0.6);
         }
         .project-tile a {
             text-decoration: none;
@@ -522,6 +547,7 @@
             text-decoration: none;
             transition: color 0.3s ease, transform 0.3s ease;
             position: relative;
+            animation: float 4s ease-in-out infinite;
         }
         .social-media a:hover {
             color: #FFBF00;
@@ -556,6 +582,7 @@
             margin: 10px;
             text-transform: uppercase;
             border: 2px solid #FFBF00;
+            animation: float 3s ease-in-out infinite;
         }
         .btn::before {
             content: '';
@@ -587,6 +614,7 @@
             border-top: 2px solid #FFBF00;
             box-shadow: 0 -2px 10px rgba(255, 191, 0, 0.3);
             position: relative;
+            backdrop-filter: blur(5px);
         }
         footer a {
             color: #FFBF00;
@@ -594,6 +622,7 @@
             margin: 0 15px;
             font-size: 1.1em;
             transition: color 0.3s ease, transform 0.3s ease;
+            animation: float 4s ease-in-out infinite;
         }
         footer a:hover {
             color: #FFBF00;
@@ -604,6 +633,7 @@
             margin-bottom: 30px;
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
             position: relative;
+            animation: glow 2s ease-in-out infinite;
         }
         h2::after {
             content: '';
@@ -615,6 +645,7 @@
             left: 50%;
             transform: translateX(-50%);
             border-radius: 2px;
+            box-shadow: 0 0 10px rgba(255, 191, 0, 0.5);
         }
         @media (max-width: 768px) {
             .navbar a {
@@ -735,10 +766,12 @@
         .favorites-section li {
             font-size: 1.2em;
             margin: 15px 0;
-            background: rgba(255, 191, 0, 0.1);
+            background: rgba(255, 191, 0, 0.15);
             padding: 15px;
             border-radius: 10px;
             transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            animation: float 4s ease-in-out infinite;
         }
         .favorites-section li:hover {
             transform: translateX(10px);
@@ -749,8 +782,9 @@
             border-radius: 15px;
             margin-top: 20px;
             border: 4px solid #FFBF00;
-            box-shadow: 0 0 20px rgba(255, 191, 0, 0.5);
+            box-shadow: 0 0 25px rgba(255, 191, 0, 0.6);
             transition: transform 0.3s ease;
+            animation: float 5s ease-in-out infinite;
         }
         .favorites-section img:hover {
             transform: scale(1.05);
@@ -793,30 +827,45 @@
         .loader-text {
             font-size: 1.5em;
             color: #FFBF00;
+            text-shadow: 0 0 10px rgba(255, 191, 0, 0.5);
         }
-        .madeline-section {
-            padding: 70px 20px;
-            text-align: center;
-            background: #191970;
-            border-top: 2px solid #FFBF00;
-            position: relative;
+        .floating-decor {
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatDecor 6s ease-in-out infinite;
         }
-        .madeline-section img {
-            width: 300px;
-            height: auto;
-            border-radius: 15px;
-            margin-top: 20px;
-            border: 4px solid #FFBF00;
-            box-shadow: 0 0 20px rgba(255, 191, 0, 0.5);
-            transition: transform 0.3s ease;
+        .floating-decor.star {
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, rgba(255, 191, 0, 0.8), transparent);
+            border-radius: 50%;
         }
-        .madeline-section img:hover {
-            transform: scale(1.05);
+        .floating-decor.circle {
+            width: 30px;
+            height: 30px;
+            background: rgba(72, 61, 139, 0.3);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 191, 0, 0.3);
         }
-        @media (max-width: 480px) {
-            .madeline-section img {
-                width: 200px;
-            }
+        body.light-mode .floating-decor.star {
+            background: radial-gradient(circle, rgba(51, 51, 51, 0.8), transparent);
+        }
+        body.light-mode .floating-decor.circle {
+            background: rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 10px rgba(51, 51, 51, 0.3);
+        }
+        body.dark-mode .floating-decor.star {
+            background: radial-gradient(circle, rgba(224, 224, 224, 0.8), transparent);
+        }
+        body.dark-mode .floating-decor.circle {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(224, 224, 224, 0.3);
+        }
+        @keyframes floatDecor {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
         }
     </style>
 </head>
@@ -845,6 +894,9 @@
     <section id="welcome-section" class="welcome-section">
         <h1 id="current-date"></h1>
         <h2 id="welcome-greeting"></h2>
+        <div class="floating-decor star" style="top: 20%; left: 10%;"></div>
+        <div class="floating-decor circle" style="top: 30%; right: 15%;"></div>
+        <div class="floating-decor star" style="bottom: 25%; left: 20%;"></div>
     </section>
     <section id="profile-section" class="profile-section">
         <h2>About Me</h2>
@@ -854,15 +906,21 @@
         <p>I am currently 17 years old.</p>
         <img src="jonathan-guardado-agredano.jpg" alt="Photo of Me at My Current Age">
         <img src="las-vegas-7-31-2023.jpg" alt="Photo of Me in Las Vegas, Nevada">
+        <div class="floating-decor circle" style="top: 10%; left: 5%;"></div>
+        <div class="floating-decor star" style="bottom: 15%; right: 10%;"></div>
     </section>
     <section id="skills-section" class="skills-section">
         <h2>My Skills</h2>
+        <div class="floating-decor star" style="top: 20%; left: 15%;"></div>
+        <div class="floating-decor circle" style="bottom: 20%; right: 10%;"></div>
     </section>
     <section id="projects" class="projects">
         <h2>My Projects</h2>
         <div class="project-tile">
             <a href="one-word-theme-for-2025.pdf" target="_blank" class="btn">Project 1</a>
         </div>
+        <div class="floating-decor circle" style="top: 15%; left: 10%;"></div>
+        <div class="floating-decor star" style="bottom: 10%; right: 15%;"></div>
     </section>
     <section id="social-media" class="social-media">
         <h2>Find my accounts here!</h2>
@@ -873,6 +931,8 @@
         <a href="https://www.linkedin.com/in/jonathan-guardado-agredano-10403832a/" target="_blank" class="btn">LinkedIn</a>
         <a href="https://www.codewars.com/users/Guar2819" target="_blank" class="btn">CodeWars</a>
         <a href="https://open.spotify.com/user/jaguar220807" target="_blank" class="btn">Spotify</a>
+        <div class="floating-decor star" style="top: 25%; left: 5%;"></div>
+        <div class="floating-decor circle" style="bottom: 20%; right: 5%;"></div>
     </section>
     <section id="favorites-section" class="favorites-section">
         <h2>My Favorites</h2>
@@ -884,7 +944,6 @@
             <li>Favorite artists: Kesha, Jessie J, Katy Perry, Selena Gomez, Britney Spears, Miley Cyrus and Clean Bandit</li>
             <li>Favorite bands: Metallica, Aerosmith and Ghost</li>
             <li>Favorite songs: Rather Be by Clean Bandit, Fireworks by Katy Perry, Flowers by Miley Cyrus, Baby One More Time by Britney Spears and Flashlight by Jessie J</li>
-            <li>Favorite video-game character: Madeline from Celeste</li>
             <li><a href="https://open.spotify.com/track/61dCUoMCg28qEBzrW6htYM" target="_blank">Rather Be by Clean Bandit on Spotify</a></li>
             <li><a href="https://open.spotify.com/track/4lCv7b86sLynZbXhfScfm2" target="_blank">Fireworks by Katy Perry on Spotify</a></li>
             <li><a href="https://open.spotify.com/track/7DSAEUvxU8FajXtRloy8M0" target="_blank">Flowers by Miley Cyrus on Spotify</a></li>
@@ -892,15 +951,15 @@
             <li><a href="https://open.spotify.com/track/6SkoBaMd0lzoQjID5aV2d9" target="_blank">Flashlight by Jessie J on Spotify</a></li>
         </ul>
         <img src="jonathan-and-joan-2024.jpg" alt="Best Memory Photo">
-    </section>
-    <section id="madeline-placeholder" class="madeline-section">
-        <h2>Madeline from Celeste</h2>
-        <img src="madeline-celeste.jpg" alt="Madeline from Celeste Placeholder">
+        <div class="floating-decor circle" style="top: 10%; left: 10%;"></div>
+        <div class="floating-decor star" style="bottom: 15%; right: 15%;"></div>
     </section>
     <footer>
         <p>© 2025 Jonathan Guardado Agredano. All rights reserved.</p>
         <a href="#welcome-section">Back to Top</a>
         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jaguar220807@gmail.com" target="_blank" id="email-me">Email Me</a>
+        <div class="floating-decor circle" style="top: 20%; left: 15%;"></div>
+        <div class="floating-decor star" style="bottom: 20%; right: 10%;"></div>
     </footer>
     <script>
         function updateDate() {
@@ -1023,6 +1082,7 @@
                 this.size = Math.random() * 5 + 1;
                 this.speedX = Math.random() * 2 - 1;
                 this.speedY = Math.random() * 2 - 1;
+                this.opacity = Math.random() * 0.5 + 0.3;
             }
             update() {
                 this.x += this.speedX;
@@ -1032,12 +1092,18 @@
                 if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
             }
             draw() {
-                ctx.fillStyle = document.body.classList.contains('light-mode') ? 'rgba(51, 51, 51, 0.5)' : 
-                               document.body.classList.contains('dark-mode') ? 'rgba(224, 224, 224, 0.5)' : 
-                               'rgba(255, 191, 0, 0.5)';
+                const isLightMode = document.body.classList.contains('light-mode');
+                const isDarkMode = document.body.classList.contains('dark-mode');
+                ctx.fillStyle = isLightMode ? `rgba(51, 51, 51, ${this.opacity})` : 
+                               isDarkMode ? `rgba(224, 224, 224, ${this.opacity})` : 
+                               `rgba(255, 191, 0, ${this.opacity})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
+                ctx.shadowColor = isLightMode ? '#333' : 
+                                 isDarkMode ? '#e0e0e0' : 
+                                 '#FFBF00';
+                ctx.shadowBlur = 10;
             }
         }
 
