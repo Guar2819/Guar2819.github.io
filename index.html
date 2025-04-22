@@ -172,6 +172,10 @@
             background: #333;
             color: #fff;
         }
+        body.light-mode .random-hello {
+            color: #333;
+            text-shadow: 0 0 10px rgba(51, 51, 51, 0.8);
+        }
         body.dark-mode {
             background: linear-gradient(to bottom, #1a1a1a, #0d0d0d);
             color: #e0e0e0;
@@ -273,6 +277,10 @@
         body.dark-mode .theme-toggle select:hover {
             background: #e0e0e0;
             color: #1a1a1a;
+        }
+        body.dark-mode .random-hello {
+            color: #e0e0e0;
+            text-shadow: 0 0 10px rgba(224, 224, 224, 0.8);
         }
         .navbar {
             position: fixed;
@@ -691,7 +699,7 @@
             h2 {
                 font-size: 2em;
             }
-            .theme-toggle {
+            .themeabba .theme-toggle {
                 top: 150px;
             }
         }
@@ -867,6 +875,20 @@
             50% { transform: translateY(-20px) rotate(180deg); }
             100% { transform: translateY(0) rotate(360deg); }
         }
+        .random-hello {
+            position: absolute;
+            color: #FFBF00;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 191, 0, 0.8);
+            z-index: 10;
+            pointer-events: none;
+            animation: float 3s ease-in-out infinite, fadeOut 3s ease-in-out forwards;
+        }
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
     </style>
 </head>
 <body>
@@ -951,6 +973,9 @@
             <li><a href="https://open.spotify.com/track/6SkoBaMd0lzoQjID5aV2d9" target="_blank">Flashlight by Jessie J on Spotify</a></li>
         </ul>
         <img src="jonathan-and-joan-2024.jpg" alt="Best Memory Photo">
+        <img src="singing-placeholder.jpg" alt="Photo">
+        <img src="beach-placeholder.jpg" alt="Photo">
+        <img src="cheeseburger-placeholder.jpg" alt="Photo">
         <div class="floating-decor circle" style="top: 10%; left: 10%;"></div>
         <div class="floating-decor star" style="bottom: 15%; right: 15%;"></div>
     </section>
@@ -1134,6 +1159,24 @@
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         });
+
+        function showRandomHello() {
+            const helloDiv = document.createElement('div');
+            helloDiv.className = 'random-hello';
+            helloDiv.textContent = 'Hello!';
+            const maxX = window.innerWidth - 100;
+            const maxY = window.innerHeight - 50;
+            const randomX = Math.random() * (80 - 10) + 10;
+            const randomY = Math.random() * (80 - 10) + 10;
+            helloDiv.style.left = `${randomX}%`;
+            helloDiv.style.top = `${randomY}%`;
+            document.body.appendChild(helloDiv);
+            setTimeout(() => {
+                helloDiv.remove();
+            }, 3000);
+        }
+        setInterval(showRandomHello, 15000);
+        showRandomHello();
     </script>
 </body>
 </html>
