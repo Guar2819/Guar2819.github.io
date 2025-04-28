@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         html {
             scroll-behavior: smooth;
@@ -562,6 +563,61 @@
             text-shadow: 0 0 10px #191970;
             transform: scale(1.1);
         }
+        .social-media .social-icon {
+            font-size: 32px;
+            width: 60px;
+            height: 60px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #FFBF00, #483D8B);
+            color: #191970;
+            border-radius: 12px;
+            border: 2px solid #FFBF00;
+            box-shadow: 0 4px 12px rgba(255, 191, 0, 0.7);
+            transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: float 3s ease-in-out infinite;
+        }
+        .social-media .social-icon:hover {
+            background: linear-gradient(45deg, #191970, #FFBF00);
+            color: #483D8B;
+            box-shadow: 0 6px 20px rgba(255, 191, 0, 0.9);
+            transform: translateY(-4px) scale(1.05);
+        }
+        .social-media .social-icon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(25, 25, 112, 0.4);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+        .social-media .social-icon:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+        body.light-mode .social-media .social-icon {
+            background: linear-gradient(45deg, #333, #666);
+            color: #fff;
+            border: 2px solid #333;
+        }
+        body.light-mode .social-media .social-icon:hover {
+            background: linear-gradient(45deg, #666, #333);
+        }
+        body.dark-mode .social-media .social-icon {
+            background: linear-gradient(45deg, #e0e0e0, #666);
+            color: #1a1a1a;
+            border: 2px solid #e0e0e0;
+        }
+        body.dark-mode .social-media .social-icon:hover {
+            background: linear-gradient(45deg, #666, #e0e0e0);
+        }
         .social-media iframe {
             display: block;
             margin: 25px auto;
@@ -702,6 +758,11 @@
             .themeabba .theme-toggle {
                 top: 150px;
             }
+            .social-media .social-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
+            }
         }
         @media (max-width: 480px) {
             .navbar a {
@@ -756,6 +817,11 @@
             }
             .theme-toggle {
                 top: 120px;
+            }
+            .social-media .social-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 24px;
             }
         }
         .favorites-section {
@@ -922,7 +988,7 @@
     </section>
     <section id="profile-section" class="profile-section">
         <h2>About Me</h2>
-        <img src="jonathan.jpg" alt="Profile Picture">
+        <img src="jonathan-graduation-practice.jpg" alt="Profile Picture">
         <p>I want to change the world knowing that I have enough knowledge to prove myself I am always following my dreams.</p>
         <p>I entered EVIT (East Valley Institute of Technology) in July 24th 2024 to follow my dreams and get the most out of certifications.</p>
         <p>I am currently 17 years old.</p>
@@ -949,10 +1015,10 @@
         <p>Hello this is a <a href="https://www.youtube.com/watch?v=Ys1w9A4DrO4">click to</a> run.</p>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/ofeKMg9Pc3Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         <br>
-        <a href="https://github.com/Guar2819" target="_blank" class="btn">GitHub</a>
-        <a href="https://www.linkedin.com/in/jonathan-guardado-agredano-10403832a/" target="_blank" class="btn">LinkedIn</a>
-        <a href="https://www.codewars.com/users/Guar2819" target="_blank" class="btn">CodeWars</a>
-        <a href="https://open.spotify.com/user/jaguar220807" target="_blank" class="btn">Spotify</a>
+        <a href="https://github.com/Guar2819" target="_blank" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/jonathan-guardado-agredano-10403832a/" target="_blank" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.codewars.com/users/Guar2819" target="_blank" class="social-icon" title="CodeWars"><i class="fas fa-code"></i></a>
+        <a href="https://open.spotify.com/user/jaguar220807" target="_blank" class="social-icon" title="Spotify"><i class="fab fa-spotify"></i></a>
         <div class="floating-decor star" style="top: 25%; left: 5%;"></div>
         <div class="floating-decor circle" style="bottom: 20%; right: 5%;"></div>
     </section>
@@ -1003,7 +1069,7 @@
         setInterval(updateDate, 1000);
         updateDate();
 
-        const emojis = ['🎵', '🌟', '🚀', '🍔', '🌊', '🎸', '✨', '🎤', '🏖️', '🔥', '🌈', '🐾', '🍕', '🎉', '🌍', '💡', '🦋', '🎨', '🍦', '🌙', '⚡', '🔔', '🎀', '🍓', '🌴', '💖', '🦄', '🎮', '🌸', '🍀'];
+        const emojis = ['🎵', '🌟', '🚀', '🍔', '🌊', '🎸', '✨', '🎤', '🏖️', '🔥', '🌈', '🐾', '🍕', '🎉', '🌍', '💡', '🦋', '🎨', '🍦', '🌙', '⚡', '🔔', '🎀', '🍓', '🌴', '💖', '🦄', '🎮', '🌸', '🍀', '🍎', '🌻', '🐬', '🎹', '🍒', '🌌', '🦁', '📚', '🍉', '🌺', '🎳', '🐠', '🍫', '🌄', '🦒', '🎬', '🍋', '🌎', '🐘', '🎻'];
         const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
         document.getElementById('random-emoji').textContent = randomEmoji;
 
@@ -1014,7 +1080,11 @@
             'Balance', 'Gratitude', 'Vision', 'Success', 'Faith', 'Unity', 'Bliss', 
             'Resilience', 'Discovery', 'Serenity', 'Empower', 'Radiance', 'Truth', 
             'Journey', 'Boldness', 'Clarity', 'Happiness', 'Purpose', 'Wonder', 
-            'Authenticity', 'Vibrance', 'Tranquility', 'Determination', 'Inspiration'
+            'Authenticity', 'Vibrance', 'Tranquility', 'Determination', 'Inspiration',
+            'Optimism', 'Compassion', 'Perseverance', 'Creativity', 'Confidence', 
+            'Generosity', 'Integrity', 'Motivation', 'Vitality', 'Curiosity', 
+            'Empathy', 'Ambition', 'Sincerity', 'Fortitude', 'Innovation', 
+            'Acceptance', 'Tenacity', 'Grace', 'Zeal', 'Fulfillment'
         ];
         const today = new Date();
         const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
